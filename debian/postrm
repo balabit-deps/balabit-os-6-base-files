@@ -19,3 +19,9 @@ if [ "$1" = "purge" ]; then
         deb-systemd-helper unmask 'motd-news.timer' >/dev/null || true
     fi
 fi
+
+if dpkg-maintscript-helper supports rm_conffile; then
+	dpkg-maintscript-helper rm_conffile /etc/default/motd-news 9.4ubuntu4.13~ base-files -- "$@"
+fi
+
+exit 0
